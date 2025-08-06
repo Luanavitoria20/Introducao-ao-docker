@@ -1,0 +1,38 @@
+### Listar todos os filmes
+GET http://localhost:3000/filmes
+Accept: application/json
+
+###
+
+### Criar um filme novo
+POST http://localhost:3000/filmes
+Content-Type: application/json
+
+{
+  "titulo": "Matrix",
+  "diretor": "Wachowski",
+  "lancamento": "1999-03-31T00:00:00.000Z"
+}
+
+###
+
+### Buscar filme por ID
+GET http://localhost:3000/filmes/1
+Accept: application/json
+
+###
+
+### Atualizar um filme
+PUT http://localhost:3000/filmes/1
+Content-Type: application/json
+
+{
+  "titulo": "Matrix Reloaded",
+  "diretor": "Wachowski",
+  "lancamento": "2003-05-15T00:00:00.000Z"
+}
+
+###
+
+### Deletar um filme
+DELETE http://localhost:3000/filmes/1
