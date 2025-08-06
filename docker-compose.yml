@@ -19,11 +19,11 @@ services:
       dockerfile: Dockerfile.api
     container_name: nest-api
     ports:
-      - "3000:3000"
+      -  "${API_PORT}:{API_PORT}"
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgres://user:pass@postgres:5432/filmesdb
+      DATABASE_URL: ${DATABASE_URL_CONTAINER}
     command: sh -c "npx prisma generate && npx prisma migrate deploy && npm run start:dev"
 
 volumes:
