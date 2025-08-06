@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    container_name: filmesdb
+    environment:
+      POSTGRES_USER: luanadb
+      POSTGRES_PASSWORD: jake_duskwood
+      POSTGRES_DB: filmesdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.api
+    container_name: nest-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://user:pass@postgres:5432/filmesdb
+    command: sh -c "npx prisma generate && npx prisma migrate deploy && npm run start:dev"
+
+volumes:
+  pgdata:
